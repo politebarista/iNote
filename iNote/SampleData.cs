@@ -11,14 +11,15 @@ namespace iNote
     {
         public static void Initialize(NoteContext context)
         {
-            if (!context.note.Any())
+            if (!context.Note.Any())
             {
-                context.note.AddRange(
+                context.Note.AddRange(
                     new NoteInfo
                     { 
                         Title = "Приветствуем вас в iNote!",
                         Desc = "Это тестовая заметка, она создается автоматически. Попробуйте ее изменить",
-                        Color = 1
+                        Color = 1,
+                        LastChange = "1990"
                     }
                 );
             }

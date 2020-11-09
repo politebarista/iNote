@@ -8,7 +8,7 @@ namespace iNote.Models
 {
     public class NoteContext : DbContext
     {
-        public DbSet<NoteInfo> note { get; set; }
+        public DbSet<NoteInfo> Note { get; set; }
 
         public NoteContext(DbContextOptions<NoteContext> options) : base(options)
         {

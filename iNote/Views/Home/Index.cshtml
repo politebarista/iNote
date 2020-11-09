@@ -12,13 +12,13 @@
             <td>Цена</td>
             <td></td>
         </tr>
-        @foreach (var note in Model)
+        @foreach (var Note in Model)
         {
             <tr>
-                <td>@note.Title</td>
-                <td>@note.Desc</td>
-                <td>@note.Color</td>
-                <td><a href="~/Home/changing/@note.Id">Редактировать</a></td>
+                <td>@Note.Title</td>
+                <td>@Note.Desc</td>
+                <td>@Note.Color</td>
+                <td><a href="~/Home/changing/@Note.Id">Редактировать</a></td>
             </tr>
         }
     </table>

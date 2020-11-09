@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using iNote.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using iNote.Models;
 
 namespace iNote
 {
@@ -25,8 +25,8 @@ namespace iNote
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("Default connection");
-            services.AddDbContext<NoteContext>(options => options.UseSqlServer(connection)); // коннект с БД на старте
+            string connection = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<NoteContext>(options => options.UseSqlServer(connection)); // коннект с БД чтобы не потерялся
             services.AddControllersWithViews();
         }
 
@@ -54,7 +54,7 @@ namespace iNote
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");// запрос к приложению должен иметь двух-трехсегментную структуру (имя контроллера, метода, необяз. парам. Id). по умолч = home/index
+                    pattern: "{controller=Home}/{action=Index}/{id?}"); // запрос к приложению должен иметь двух-трехсегментную структуру (имя контроллера, метода, необяз. парам. Id). по умолч = home/index
             });
         }
     }

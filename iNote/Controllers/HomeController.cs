@@ -11,19 +11,18 @@ namespace iNote.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        NoteContext db;
+        public HomeController(NoteContext context)
         {
-            _logger = logger;
+            db = context; // тут получаем контекст данных из стартапа (какая-то там зависимость)
         }
 
         public IActionResult Index()
         {
-            return View(db.NoteInfo.ToList());
+            return View(db.Note.ToList());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Changing()
         {
             return View();
         }
