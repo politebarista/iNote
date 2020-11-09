@@ -1,8 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<iNote.Models.NoteInfo>
+@{
+    ViewData["Title"] = "Список заметок";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h3>Заметки</h3>
+    <table>
+        <tr>
+            <td>Модель</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var note in Model)
+        {
+            <tr>
+                <td>@note.Title</td>
+                <td>@note.Desc</td>
+                <td>@note.Color</td>
+                <td><a href="~/Home/changing/@note.Id">Редактировать</a></td>
+            </tr>
+        }
+    </table>
 </div>

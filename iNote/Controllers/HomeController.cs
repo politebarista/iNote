@@ -20,7 +20,7 @@ namespace iNote.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(db.NoteInfo.ToList());
         }
 
         public IActionResult Privacy()
