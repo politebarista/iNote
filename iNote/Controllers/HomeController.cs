@@ -21,10 +21,24 @@ namespace iNote.Controllers
         {
             return View(db.Note.ToList());
         }
-
+        [HttpGet]
         public IActionResult Changing()
         {
             return View();
+        }
+        [HttpPost]
+        public string Changing(NoteInfo order)
+        {
+            try
+            {
+                db.Note.Add(order); // добавляем в БД
+                db.SaveChanges(); // сохраняем БД
+                return "Записка " + order.Title + " успешно добавлена.";
+            }
+            catch (Exception ex)
+            {
+                return "Ошибка при заполнении. (HomeController)" + ex;
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
