@@ -38,13 +38,31 @@ namespace iNote.Controllers
 
             return View(noteInfo);
         }
-        [HttpGet]
+        public IActionResult Creating()
+        {
+            ViewBag.isChanging = 1;
+            return View("Changing");
+        }
         public IActionResult Changing()
         {
             return View();
         }
         [HttpPost]
-        public string Changing(NoteInfo order)
+        public string Creating(NoteInfo order)
+        {
+            try
+            {
+                order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+                db.Note.Add(order); // добавляем в БД
+                db.SaveChanges(); // сохраняем БД
+                return "Записка " + order.Title + " успешно добавлена.";
+            }
+            catch (Exception ex)
+            {
+                return "Ошибка при заполнении. (HomeController)" + ex;
+            }
+        }
+        /*public string Changing(NoteInfo order)
         {
             try
             {
@@ -56,7 +74,7 @@ namespace iNote.Controllers
             {
                 return "Ошибка при заполнении. (HomeController)" + ex;
             }
-        }
+        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

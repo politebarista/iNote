@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<iNote.Models.NoteInfo>
 @{
-    ViewData["Title"] = "Изменение заметки";
+    var some = (ViewBag.isChanging == 1) ? (ViewData["Title"] = "Создание новой заметки") : (ViewData["Title"] = "Изменение заметки");
 }
 <form method="post" class="form-horizontal" role="form">
     <!--<input type="hidden" value="@ViewBag.PhoneId" name="PhoneId" />-->
@@ -29,3 +29,6 @@
         </div>
     </div>
 </form>
+@{
+    ViewBag.isChanging = 0;
+}
