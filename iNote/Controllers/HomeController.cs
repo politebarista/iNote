@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using iNote.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace iNote.Controllers
 {
@@ -20,6 +21,22 @@ namespace iNote.Controllers
         public IActionResult Index()
         {
             return View(db.Note.ToList());
+        }
+        public async Task<IActionResult> Viewing(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var noteInfo = await db.Note
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (noteInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(noteInfo);
         }
         [HttpGet]
         public IActionResult Changing()
