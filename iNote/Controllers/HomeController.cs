@@ -44,9 +44,21 @@ namespace iNote.Controllers
             ViewBag.isCreating = 1;
             return View("Changing");
         }
-        public IActionResult Changing()
+        public async Task<IActionResult> Changing(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var noteInfo = await db.Note
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (noteInfo == null)
+            {
+                return NotFound();
+            }
+
+            return View(noteInfo);
         }
         [HttpPost]
         public IActionResult Creating(NoteInfo order)
