@@ -1,10 +1,18 @@
 ﻿@model IEnumerable<iNote.Models.NoteInfo>
 @{
-    var some = (ViewBag.isChanging == 1) ? (ViewData["Title"] = "Создание новой заметки") : (ViewData["Title"] = "Изменение заметки");
+    //var some = (ViewBag.isChanging == 1) ? (ViewData["Title"] = "Создание новой заметки") : (ViewData["Title"] = "Изменение заметки");
+    if (ViewBag.isCreating == 1)
+    {
+        ViewData["Title"] = "Создание новой заметки";
+    } else
+    {
+        ViewData["Title"] = "Изменение заметки";
+        //ViewData["EntryFieldName"] = "value=\""+Model.Title ;
+    }
 }
 <form method="post" class="form-horizontal" role="form">
     <!--<input type="hidden" value="@ViewBag.PhoneId" name="PhoneId" />-->
-    <p>Для оформления покупки заполните следующие поля:</p>
+    <h2>@ViewData["Title"]</h2>
     <div class="form-group">
         <label for="User" class="col-md-2 control-label">Название:</label>
         <div class="col-md-4">
@@ -29,6 +37,3 @@
         </div>
     </div>
 </form>
-@{
-    ViewBag.isChanging = 0;
-}

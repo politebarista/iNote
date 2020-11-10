@@ -24,6 +24,7 @@ namespace iNote.Controllers
         }
         public async Task<IActionResult> Viewing(int? id)
         {
+            ViewBag.isVisible = 1;
             if (id == null)
             {
                 return NotFound();
@@ -40,7 +41,7 @@ namespace iNote.Controllers
         }
         public IActionResult Creating()
         {
-            ViewBag.isChanging = 1;
+            ViewBag.isCreating = 1;
             return View("Changing");
         }
         public IActionResult Changing()
@@ -48,38 +49,53 @@ namespace iNote.Controllers
             return View();
         }
         [HttpPost]
-        public string Creating(NoteInfo order)
+        public IActionResult Creating(NoteInfo order)
         {
-            try
-            {
                 order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
                 db.Note.Add(order); // добавляем в БД
                 db.SaveChanges(); // сохраняем БД
-                return "Записка " + order.Title + " успешно добавлена.";
-            }
-            catch (Exception ex)
-            {
-                return "Ошибка при заполнении. (HomeController)" + ex;
-            }
+                return RedirectToAction("Index");
         }
-        /*public string Changing(NoteInfo order)
+        [HttpPost]
+        public async Task<IActionResult> Changing(int id, NoteInfo noteInfo)
         {
-            try
+            /*if (id != noteInfo.Id)
             {
-                db.Note.Add(order); // добавляем в БД
-                db.SaveChanges(); // сохраняем БД
-                return "Записка " + order.Title + " успешно добавлена.";
-            }
-            catch (Exception ex)
+                return NotFound();
+            }*/
+
+            if (ModelState.IsValid)
             {
-                return "Ошибка при заполнении. (HomeController)" + ex;
+                try
+                {
+                    noteInfo.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+                    db.Update(noteInfo);
+                    await db.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!NoteInfoExists(noteInfo.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
             }
-        }*/
+            return View(noteInfo);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        private bool NoteInfoExists(int id)
+        {
+            return db.Note.Any(e => e.Id == id);
         }
     }
 }

@@ -2,4 +2,6 @@
 @{
     ViewData["Title"] = "Заметка - " + Model.Title;
 }
-<h2>some</h2>
+<h2>@Model.Title</h2>
+<p>@Model.Desc</p>
+<p>Дата последнего изменения - @Model.LastChange</p>
