@@ -18,10 +18,11 @@ namespace iNote
                     { 
                         Title = "Приветствуем вас в iNote!",
                         Desc = "Это тестовая заметка, она создается автоматически. Попробуйте ее изменить",
-                        Color = 1,
-                        LastChange = "1990"
+                        Color = "blue",
+                        LastChange = DateTime.Now.ToString()
                     }
                 );
+                context.SaveChanges();
             }
         }
     }
