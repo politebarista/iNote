@@ -6,6 +6,7 @@
         ViewData["Title"] = "Создание новой заметки";
     } else
     {
+        ViewBag.isChanging = 1;
         ViewData["Title"] = "Изменение заметки";
         ViewBag.EntryFieldName = $"value=\"{Model.Title}\"";
         ViewBag.EntryFieldDesc = $"value=\"{Model.Desc}\"";

@@ -18,17 +18,33 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Creating">+</a>
-                        </li>
                         @{
-                            if (ViewBag.isVisible == 1) {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="~/Home/changing/@Model.Id">&#128393;</a>
-                        </li>
+                            if ((ViewBag.isVisible == null) && (ViewBag.isChanging == null) && (ViewBag.isCreating == null))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Creating">+</a>
+                                </li>
+                            }
+                            if (ViewBag.isVisible == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="~/Home/Changing/@Model.Id">&#128393;</a>
+                                </li>
+                            }
+                            if (ViewBag.isChanging == 1)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="~/Home/Viewing/@Model.Id">&#11013;</a>
+                                </li>
+                            }
+                            if ((ViewBag.isCreating == 1) || (ViewBag.isVisible == 1))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="~/Home/Index">&#11013;</a>
+                                </li>
                             }
                         }
-                        
+
                         <!--<li class="nav-item">
         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
     </li>-->
