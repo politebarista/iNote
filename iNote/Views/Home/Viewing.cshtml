@@ -1,6 +1,7 @@
 ﻿@model iNote.Models.NoteInfo
 @{
     ViewData["Title"] = "Заметка - " + Model.Title;
+    ViewBag.Color = $"bg-{Model.Color}";
 }
 <h2>@Model.Title</h2>
 <p>@Model.Desc</p>
