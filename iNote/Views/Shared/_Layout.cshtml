@@ -34,13 +34,19 @@
                             if (ViewBag.isChanging == 1)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" href="~/Home/Viewing/@Model.Id">&#11013;</a>
+                                    <a class="nav-link text-dark" href="~/Home/Viewing/@Model.Id">&#11148;</a>
                                 </li>
                             }
                             if ((ViewBag.isCreating == 1) || (ViewBag.isVisible == 1))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" href="~/Home/Index">&#11013;</a>
+                                    <a class="nav-link text-dark" href="~/Home/Index">&#11148;</a>
+                                </li>
+                            }
+                            if ((ViewBag.isCreating == 1) || (ViewBag.isChanging == 1))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" href="#">&#128427;</a>
                                 </li>
                             }
                         }
