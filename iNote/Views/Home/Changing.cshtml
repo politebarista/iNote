@@ -27,11 +27,22 @@
             <input type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
         </div>
     </div>
-    <div class="form-group">
+    <!--<div class="form-group">
         <label class="col-md-2 control-label">Цвет:</label>
         <div class="col-md-4">
             <input type="text" name="Color" class="form-control" />
         </div>
+    </div>-->
+    <div class="col-md-4 mb-4">
+        <select class="form-control" name="Color">
+            <option selected value="dark" class="text-dark">Темно-серый</option>
+            <option value="success" class="text-success">Зеленый</option>
+            <option value="primary" class="text-primary">Синий</option>
+            <option value="danger" class="text-danger">Красный</option>
+            <option value="warning" class="text-warning">Желтый</option>
+            <option value="secondary" class="text-secondary">Серый</option>
+            <option value="white" class="text-white">Белый</option>
+        </select>
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
