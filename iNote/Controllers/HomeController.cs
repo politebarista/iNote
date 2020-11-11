@@ -95,9 +95,9 @@ namespace iNote.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return Redirect("~/Home/Viewing/"+id);
             }
-            return View(noteInfo);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

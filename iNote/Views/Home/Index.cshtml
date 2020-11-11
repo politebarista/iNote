@@ -9,14 +9,12 @@
         <tr>
             <td>Название</td>
             <td>Дата последнего изменения</td>
-            <td></td>
         </tr>
         @foreach (var Note in Model)
         {
             <tr>
                 <td><a class="text-@Note.Color" href="~/Home/viewing/@Note.Id">@Note.Title</a></td>
                 <td>@Note.LastChange</td>
-                <td><a href="~/Home/changing/@Note.Id">Редактировать</a></td>
             </tr>
         }
     </table>

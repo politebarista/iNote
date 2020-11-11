@@ -18,7 +18,7 @@ namespace iNote
                     { 
                         Title = "Приветствуем вас в iNote!",
                         Desc = "Это тестовая заметка, она создается автоматически. Попробуйте ее изменить",
-                        Color = "blue",
+                        Color = "secondary",
                         LastChange = DateTime.Now.ToString("dd.MM.yyyy hh:mm")
                     }
                 );
