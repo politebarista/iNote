@@ -4,7 +4,8 @@
     if (ViewBag.isCreating == 1)
     {
         ViewData["Title"] = "Создание новой заметки";
-    } else
+    }
+    else
     {
         ViewBag.isChanging = 1; // _Layout - String 34
         ViewData["Title"] = "Изменение заметки";
@@ -18,13 +19,13 @@
     <div class="form-group">
         <label for="User" class="col-md-2 control-label">Название:</label>
         <div class="col-md-4">
-            <input type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
+            <input id="newTitle" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
         </div>
     </div>
     <div class="form-group">
         <label for="Address" class="col-md-2 control-label">Текст:</label>
         <div class="col-md-4">
-            <input type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
+            <input id="newDesc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
         </div>
     </div>
     <!--<div class="form-group">
@@ -51,3 +52,12 @@
         </div>
     </div>
 </form>
+
+@if (ViewBag.isChanging == 1)
+{
+    <form class="d-none">
+        <input id="oldTitle" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
+        <input id="oldDesc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
+    </form>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}

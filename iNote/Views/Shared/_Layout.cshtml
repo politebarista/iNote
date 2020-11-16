@@ -33,8 +33,7 @@
                             }
                         if (ViewBag.isChanging == 1)
                             {
-                        <button class="btn btn-light" asp-controller="Home" asp-action="Viewing"
-                            asp-route-id=@Model.Id>&#11148;</button>
+                        <button class="btn btn-light" id="back">&#11148;</button>
                             }
                         if ((ViewBag.isCreating == 1) || (ViewBag.isVisible == 1))
                             {
@@ -63,7 +62,6 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>
 
