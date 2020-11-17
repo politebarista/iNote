@@ -22,7 +22,7 @@ namespace iNote.Controllers
         {
             return View(db.Note.ToList());
         }
-        public async Task<IActionResult> Viewing(int? id)
+        public async Task<IActionResult> View(int? id)
         {
             ViewBag.isVisible = 1;
             if (id == null)
@@ -39,12 +39,12 @@ namespace iNote.Controllers
 
             return View(Note);
         }
-        public IActionResult Creating()
+        public IActionResult Creat()
         {
             ViewBag.isCreating = 1;
-            return View("Changing");
+            return View("Change");
         }
-        public async Task<IActionResult> Changing(int? id)
+        public async Task<IActionResult> Change(int? id)
         {
             if (id == null)
             {
@@ -61,7 +61,7 @@ namespace iNote.Controllers
             return View(Note);
         }
         [HttpPost]
-        public IActionResult Creating(Note order)
+        public IActionResult Creat(Note order)
         {
                 order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
                 db.Note.Add(order); // добавляем в БД
@@ -69,7 +69,7 @@ namespace iNote.Controllers
                 return RedirectToAction("Index");
         }
         [HttpPost]
-        public async Task<IActionResult> Changing(int id, Note Note)
+        public async Task<IActionResult> Change(int id, Note Note)
         {
             /*if (id != Note.Id)
             {
@@ -95,7 +95,7 @@ namespace iNote.Controllers
                         throw;
                     }
                 }
-                return Redirect("~/Home/Viewing/"+id);
+                return Redirect("~/Home/View/"+id);
             }
             return RedirectToAction("Index");
         }
