@@ -11,10 +11,12 @@ namespace iNote.Controllers
     public class NotesController : Controller
     {
         NoteContext db;
+
         public NotesController(NoteContext context)
         {
             db = context; // тут получаем контекст данных из стартапа (какая-то там зависимость)
         }
+
         public async Task<IActionResult> View(int? id)
         {
             ViewBag.isVisible = 1;
@@ -32,11 +34,21 @@ namespace iNote.Controllers
 
             return View(Note);
         }
+
         public IActionResult Create()
         {
             ViewBag.isCreating = 1;
             return View("Change");
         }
+        [HttpPost]
+        public IActionResult Create(Note order)
+        {
+            order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+            db.Note.Add(order); // добавляем в БД
+            db.SaveChanges(); // сохраняем БД
+            return Redirect("/");
+        }
+
         public async Task<IActionResult> Change(int? id)
         {
             if (id == null)
@@ -52,14 +64,6 @@ namespace iNote.Controllers
             }
 
             return View(Note);
-        }
-        [HttpPost]
-        public IActionResult Create(Note order)
-        {
-            order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
-            db.Note.Add(order); // добавляем в БД
-            db.SaveChanges(); // сохраняем БД
-            return Redirect("/");
         }
         [HttpPost]
         public async Task<IActionResult> Change(int id, Note Note)
