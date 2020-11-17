@@ -24,11 +24,11 @@
                         @{
                         if ((ViewBag.isVisible == null) && (ViewBag.isChanging == null) && (ViewBag.isCreating == null))
                             {
-                        <button class="btn btn-light" asp-controller="Home" asp-action="Creating">+</button>
+                        <button class="btn btn-light" asp-controller="Notes" asp-action="Create">+</button>
                             }
                         if (ViewBag.isVisible == 1)
                             {
-                        <button class="btn btn-light" asp-controller="Home" asp-action="Changing"
+                        <button class="btn btn-light" asp-controller="Notes" asp-action="Change"
                             asp-route-id=@Model.Id>&#128393;</button>
                             }
                         if (ViewBag.isChanging == 1)

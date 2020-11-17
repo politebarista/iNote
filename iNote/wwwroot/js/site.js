@@ -9,12 +9,12 @@ back.onclick = function () {
         document.getElementById("confirm").classList.toggle("d-none");
     } else {
         console.log("идентичны");
-        window.location.href = '/Home/Viewing/' + document.getElementById("id").value;
+        window.location.href = '/Notes/View/' + document.getElementById("id").value;
     }
 }
 saveChanges.onclick = function () {
     document.getElementById("sendRequest").click();
 }
 discardChanges.onclick = function () {
-    window.location.href = '/Home/Viewing/' + document.getElementById("id").value;
+    window.location.href = '/Notes/View/' + document.getElementById("id").value;
 }

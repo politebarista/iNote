@@ -13,7 +13,7 @@
         @foreach (var Note in Model)
         {
             <tr>
-                <td><a class="text-@Note.Color" href="~/Home/viewing/@Note.Id">@Note.Title</a></td>
+                <td><a class="text-@Note.Color" href="~/Notes/View/@Note.Id">@Note.Title</a></td>
                 <td>@Note.LastChange</td>
             </tr>
         }
