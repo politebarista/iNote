@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace iNote.Models
 {
-    public class NoteInfo
+    public class Note
     {
         public int Id { get; set; }
         public string Title { get; set; }

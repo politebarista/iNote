@@ -14,7 +14,7 @@ namespace iNote
             if (!context.Note.Any())
             {
                 context.Note.AddRange(
-                    new NoteInfo
+                    new Note
                     { 
                         Title = "Приветствуем вас в iNote!",
                         Desc = "Это тестовая заметка, она создается автоматически. Попробуйте ее изменить",

@@ -30,14 +30,14 @@ namespace iNote.Controllers
                 return NotFound();
             }
 
-            var noteInfo = await db.Note
+            var Note = await db.Note
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (noteInfo == null)
+            if (Note == null)
             {
                 return NotFound();
             }
 
-            return View(noteInfo);
+            return View(Note);
         }
         public IActionResult Creating()
         {
@@ -51,17 +51,17 @@ namespace iNote.Controllers
                 return NotFound();
             }
 
-            var noteInfo = await db.Note
+            var Note = await db.Note
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (noteInfo == null)
+            if (Note == null)
             {
                 return NotFound();
             }
 
-            return View(noteInfo);
+            return View(Note);
         }
         [HttpPost]
-        public IActionResult Creating(NoteInfo order)
+        public IActionResult Creating(Note order)
         {
                 order.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
                 db.Note.Add(order); // добавляем в БД
@@ -69,9 +69,9 @@ namespace iNote.Controllers
                 return RedirectToAction("Index");
         }
         [HttpPost]
-        public async Task<IActionResult> Changing(int id, NoteInfo noteInfo)
+        public async Task<IActionResult> Changing(int id, Note Note)
         {
-            /*if (id != noteInfo.Id)
+            /*if (id != Note.Id)
             {
                 return NotFound();
             }*/
@@ -80,13 +80,13 @@ namespace iNote.Controllers
             {
                 try
                 {
-                    noteInfo.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
-                    db.Update(noteInfo);
+                    Note.LastChange = DateTime.Now.ToString("dd.MM.yyyy HH:mm");
+                    db.Update(Note);
                     await db.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NoteInfoExists(noteInfo.Id))
+                    if (!NoteInfoExists(Note.Id))
                     {
                         return NotFound();
                     }
