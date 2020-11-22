@@ -42,6 +42,7 @@
             <input type="submit" id="sendRequest" class="btn btn-success" value="Сохранить" />
         </div>
     </div>
+    <div id="content"></div>
 </form>
 
 @if (ViewBag.Status == "Change")
@@ -51,12 +52,9 @@
         <input id="oldTitle" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
         <input id="oldDesc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
     </form>
-    <div class="d-none" id="confirm">
-        <div class="confirm-window">
-            Были внесены изменения. Сохранить их?
-            <button type="button" class="btn btn-success" id="saveChanges">Да</button>
-            <button type="button" class="btn btn-warning" id="discardChanges">Нет</button>
-        </div>
-    </div>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+    <script src="@Url.Content("~/js/site.jsx")"></script>
 }
