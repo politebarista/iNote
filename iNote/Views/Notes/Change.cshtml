@@ -1,13 +1,11 @@
 ﻿@model iNote.Models.Note
 @{
-    //var some = (ViewBag.isChanging == 1) ? (ViewData["Title"] = "Создание новой заметки") : (ViewData["Title"] = "Изменение заметки");
-    if (ViewBag.isCreating == 1)
+    if (ViewBag.Status == "Create")
     {
         ViewData["Title"] = "Создание новой заметки";
     }
     else
     {
-        ViewBag.isChanging = 1; // _Layout - String 34
         ViewData["Title"] = "Изменение заметки";
         ViewBag.EntryFieldName = $"value=\"{Model.Title}\"";
         ViewBag.EntryFieldDesc = $"value=\"{Model.Desc}\"";
@@ -46,7 +44,7 @@
     </div>
 </form>
 
-@if (ViewBag.isChanging == 1)
+@if (ViewBag.Status == "Change")
 {
     <form class="d-none">
         <input id="id" type="text" value="@Model.Id" class="form-control" />

@@ -19,7 +19,7 @@ namespace iNote.Controllers
 
         public async Task<IActionResult> View(int? id)
         {
-            ViewBag.isVisible = 1;
+            ViewBag.Status = "View";
             if (id == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace iNote.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.isCreating = 1;
+            ViewBag.Status = "Create";
             return View("Change");
         }
         [HttpPost]
@@ -51,6 +51,7 @@ namespace iNote.Controllers
 
         public async Task<IActionResult> Change(int? id)
         {
+            ViewBag.Status = "Change";
             if (id == null)
             {
                 return NotFound();

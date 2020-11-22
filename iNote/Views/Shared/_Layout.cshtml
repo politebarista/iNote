@@ -21,22 +21,21 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <form method="get">
                         @{
-                        if ((ViewBag.isVisible == null) && (ViewBag.isChanging == null) && (ViewBag.isCreating == null))
+                            switch (ViewBag.Status)
                             {
-                        <button class="btn btn-light" asp-controller="Notes" asp-action="Create">+</button>
-                            }
-                        if (ViewBag.isVisible == 1)
-                            {
-                        <button class="btn btn-light" asp-controller="Notes" asp-action="Change"
-                            asp-route-id=@Model.Id>&#128393;</button>
-                            }
-                        if (ViewBag.isChanging == 1)
-                            {
-                        <input class="btn btn-light" type="button" value="&#11148;" id="back"/>
-                            }
-                        if ((ViewBag.isCreating == 1) || (ViewBag.isVisible == 1))
-                            {
-                        <button class="btn btn-light" asp-controller="Home" asp-action="Index">&#11148;</button>
+                                case "Create":
+                                    <button class="btn btn-light" asp-controller="Home" asp-action="Index">&#11148;</button>
+                                    break;
+                                case "Change":
+                                    <input class="btn btn-light" type="button" value="&#11148;" id="back" />
+                                    break;
+                                case "View":
+                                    <button class="btn btn-light" asp-controller="Notes" asp-action="Change" asp-route-id=@Model.Id>&#128393;</button>
+                                    <button class="btn btn-light" asp-controller="Home" asp-action="Index">&#11148;</button>
+                                    break;
+                                default:
+                                    <button class="btn btn-light" asp-controller="Notes" asp-action="Create">+</button>
+                                    break;
                             }
                         }
                     </form>
