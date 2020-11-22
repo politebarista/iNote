@@ -16,13 +16,13 @@
     <div class="form-group">
         <label for="User" class="col-md-2 control-label">Название:</label>
         <div class="col-md-4">
-            <input id="newTitle" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
+            <input id="Title" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
         </div>
     </div>
     <div class="form-group">
         <label for="Address" class="col-md-2 control-label">Текст:</label>
         <div class="col-md-4">
-            <input id="newDesc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
+            <input id="Desc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
         </div>
     </div>
     <label for="Address" class="col-md-2 control-label">Цвет:</label>
@@ -42,19 +42,6 @@
             <input type="submit" id="sendRequest" class="btn btn-success" value="Сохранить" />
         </div>
     </div>
-    <div id="content"></div>
+    <input id="id" type="hidden" value="@Model.Id" class="form-control" />
 </form>
-
-@if (ViewBag.Status == "Change")
-{
-    <form class="d-none">
-        <input id="id" type="text" value="@Model.Id" class="form-control" />
-        <input id="oldTitle" type="text" name="Title" @Html.Raw(ViewBag.EntryFieldName) class="form-control" />
-        <input id="oldDesc" type="text" name="Desc" @Html.Raw(ViewBag.EntryFieldDesc) class="form-control" />
-    </form>
-
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.13.0/umd/react.development.js"></script>
-    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.13.0/umd/react-dom.development.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
-    <script src="@Url.Content("~/js/site.jsx")"></script>
-}
+<div id="content"></div>
